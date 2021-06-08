@@ -1,0 +1,47 @@
+<head th:fragment="head">
+<title>Cadastro de Cidades</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<div th:fragment="logo">
+
+	<div class="jumbotron text-center"
+		style="height: 30%; background-color: #ccffff">
+		<h1>Tecsidel do Brasil</h1>
+		<H3>Cadastro de Cidades</H3>
+
+		<div class="col">
+			<nav class="nav">
+				
+				<a class="nav-link" th:href="@{/cadastro/formulario}">Cadastro</a><br />
+				<a class="nav-link" th:href="@{/cadastro/busca}">Busca</a>
+				<a style="margin-left:70%;color:red" onclick="sair()"
+					class="nav-link"  href="#">Sair</a>
+			</nav>
+		</div>
+	</div>
+
+<form id="form-login" th:action="@{/logout}" method="post"></form>
+<script>
+function sair(){
+	$("#form-login").submit();
+}
+</script>
+</div>
+
+
+
+
+
+
+
+

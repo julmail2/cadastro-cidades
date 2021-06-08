@@ -1,0 +1,25 @@
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<form th:action="@{/cadastro/busca-cidades}" method="get">
+			<div>
+				<label for="uf">UF</label> <select autofocus="autofocus" class="form-control" name="ufId">
+					<option value="">Selecione</option>
+					<option th:each="uf : ${listaUf}" th:value="${uf.id}"
+						th:text="${uf.sigla}"></option>
+				</select>
+			</div>
+			<div>
+				<label for="nome">Nome</label> <input maxlength="200" class="form-control"
+					name="nome" />
+			</div>
+			<div style="margin-top: 1%">
+				<input class="btn btn-info" value="Pesquisar" type="submit" />
+
+			</div>
+		</form>
+	</div>
+</body>
+</html>

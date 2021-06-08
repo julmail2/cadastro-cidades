@@ -1,0 +1,46 @@
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+
+
+	<div class="container">
+		
+		
+			<table id="lista-cidades" class="table">
+				<thead>
+					<tr>
+						<th>UF</th>
+						<th>Cidade</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cidade : ${cidades}" th:id="${cidade.id}">
+						<td th:text="${cidade.uf.sigla}"></td>
+						<td th:text="${cidade.nome}"></td>
+						<td title="remover" th:attr="onclick=|remove('${cidade.id}')|"><a href="#"><i class="fa fa-trash" style="font-size:24px;color:red;"></i></a></td>
+						<td title="alterar dados"><a th:href="@{/cadastro/{id}(id=${cidade.id})}"><i class="fa fa-edit" style="font-size:24px;"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		<script>
+			function remove(id) {
+				if (confirm("Tem certeza que deseja excluir esse registro?")) {
+					$.ajax({
+						url : '/cadastro/' + id,
+						type : 'DELETE',
+						success : function(result) {
+							$("#" + id).hide();
+						}
+					});
+				} else {
+					return;
+				}
+			}
+		</script>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	
+
+	<div class="container">
+
+		
+		<form th:action="@{/cadastro/salvar}" th:object="${cidadeForm}"
+			method="post">
+			<div>
+				<label for="uf">UF</label> <select autofocus="autofocus" required="required" class="form-control" th:field="*{ufId}"
+					th:errorclass="is-invalid">
+					<option value="">Selecione</option>
+					<option th:each="uf : ${listaUf}" th:value="${uf.id}"
+						th:text="${uf.sigla}"></option>
+				</select>
+
+				<div class="invalid-feedback" th:errors="*{ufId}">Erros do
+					nome do produto</div>
+			</div>
+
+			<div>
+				<label for="nome">Nome</label> <input maxlength="200" required="required" class="form-control" th:field="*{nome}"
+					th:errorclass="is-invalid" />
+
+				<div class="invalid-feedback" th:errors="*{nome}">Erros do
+					nome da cidade</div>
+			</div>
+			<input type="hidden" th:field="*{id}" />
+			<div style="margin-top: 1%">
+				<input class="btn btn-success" value="Salvar" type="submit" />
+
+			</div>
+		</form>
+	</div>
+</body>
+</html>
