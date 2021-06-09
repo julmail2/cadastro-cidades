@@ -12,30 +12,33 @@
 </head>
 
 
-<div th:fragment="logo">
+<div th:fragment="logo" >
 
 	<div class="jumbotron text-center"
-		style="height: 30%; background-color: #ccffff">
+		style="margin-left:1%;margin-top:1%; 30%;width:98%; background-color: #ccffff;border-radius: 6px ;">
 		<h1>Tecsidel do Brasil</h1>
 		<H3>Cadastro de Cidades</H3>
 
-		<div class="col">
+		<a
+					style="margin-left: 60%;float:right; color: red" onclick="sair()"
+					class="nav-link" href="#"><button class="btn btn-danger">
+						<i class="fa fa-sign-out" style="font-size:20px;"></i>Sair
+					</button></a>
+	</div>
+	<div class="col">
 			<nav class="nav">
-				
-				<a class="nav-link" th:href="@{/cadastro/formulario}">Cadastro</a><br />
-				<a class="nav-link" th:href="@{/cadastro/busca}">Busca</a>
-				<a style="margin-left:70%;color:red" onclick="sair()"
-					class="nav-link"  href="#">Sair</a>
+
+				<a class="nav-link" th:href="@{/cadastro/formulario}"><button class="btn btn-info"><i class="fa fa-plus" style="font-size:20px;"></i>Cadastro</button></a>
+				<a class="nav-link" th:href="@{/cadastro/busca}"><button class="btn btn-info"><i class="fa fa-search" style="font-size:20px;"></i>Busca</button></a> 
 			</nav>
 		</div>
-	</div>
 
-<form id="form-login" th:action="@{/logout}" method="post"></form>
-<script>
-function sair(){
-	$("#form-login").submit();
-}
-</script>
+	<form id="form-login" th:action="@{/logout}" method="post"></form>
+	<script>
+		function sair() {
+			$("#form-login").submit();
+		}
+	</script>
 </div>
 
 

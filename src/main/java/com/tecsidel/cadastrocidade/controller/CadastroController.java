@@ -71,16 +71,7 @@ public class CadastroController {
 	public String listaCidades(Model model) {
 		List<Cidade> listaCidades = new ArrayList<Cidade>();
 		listaCidades = cidadeRepository.findAll();
-		List<Cidade> cidades = listaCidades.stream().sorted((c1, c2) -> {
-			if (c1.getUf().getSigla().equals(c2.getUf().getSigla())) {
-				return c1.getNome().compareTo(c2.getNome());
-			} else {
-				return c1.getUf().getSigla().compareTo(c2.getUf().getSigla());
-			}
-
-		}).collect(Collectors.toList());
-
-		model.addAttribute("cidades", cidades);
+		model.addAttribute("cidades", this.ordenaListaDeCidades(listaCidades));
 		return "cadastro/lista-cidades";
 	}
 
@@ -102,16 +93,9 @@ public class CadastroController {
 			listaCidades = cidadeRepository.findAll();
 		}
 
-		List<Cidade> cidades = listaCidades.stream().sorted((c1, c2) -> {
-			if (c1.getUf().getSigla().equals(c2.getUf().getSigla())) {
-				return c1.getNome().compareTo(c2.getNome());
-			} else {
-				return c1.getUf().getSigla().compareTo(c2.getUf().getSigla());
-			}
+		
 
-		}).collect(Collectors.toList());
-
-		model.addAttribute("cidades", cidades);
+		model.addAttribute("cidades", this.ordenaListaDeCidades(listaCidades));
 		return "cadastro/lista-cidades";
 	}
 
@@ -132,6 +116,18 @@ public class CadastroController {
 		List<UF> listaUf = ufRepository.findByOrderBySiglaAsc();
 		model.addAttribute("listaUf", listaUf);
 		return "cadastro/formulario";
+	}
+	
+	private List<Cidade> ordenaListaDeCidades(List<Cidade> listaCidades) {
+		return listaCidades.stream().sorted((c1, c2) -> {
+			if (c1.getUf().getSigla().equals(c2.getUf().getSigla())) {
+				return c1.getNome().toLowerCase().compareTo(c2.getNome().toLowerCase());
+			} else {
+				return c1.getUf().getSigla().compareTo(c2.getUf().getSigla());
+			}
+
+		}).collect(Collectors.toList());
+
 	}
 
 }
